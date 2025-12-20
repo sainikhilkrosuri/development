@@ -19,7 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('/', include('mainproject.urls'))
+    path('', include('webhook.urls'))
 ]
 
 #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
