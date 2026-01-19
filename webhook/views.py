@@ -6,18 +6,44 @@ from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from .forms import *
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 # Create your views here.
-
+@login_required
 def webhook(request):
-    if request.method == 'POST':
-        return None
     return render(request, 'webhook.html')
 
-def login(request):
-    
-    return render(request, 'login.html')
+@login_required
+def index(request):
+    return render(request, index.html)
 
-def logout(request):
+def register(request):
+    form = create_account()
+    if request.method == 'POST':
+        register_user = create_account(request.POST)
+        if register_user.is_valid():
+            register_user.save()
+            return redirect('login')
+        else:
+            form = create_account()
+            return redirect('login')
+    return render(request, 'register.html', {'form':form})
+
+def login_user(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('index')
+        else:
+            form = AuthenticationForm()
+    else:
+        form = AuthenticationForm()
+
+    return render(request, 'login.html', {'form': form})
+
+def logout_user(request):
     logout(request)
     return redirect('login')

@@ -4,5 +4,10 @@
 </head>
 <body>
     <h1>This is login page</h1>
+    <h5>saidhegsfje</h5>
+    <form method = 'post'>{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
 </body>
 </html>

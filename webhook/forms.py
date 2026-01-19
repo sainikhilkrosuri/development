@@ -1,7 +1,10 @@
 from django.forms import ModelForm
 from .models import *
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-class newWebhookForm(ModelForm):
+
+class create_account(UserCreationForm):
     class Meta:
-        model = newWebhhook
-        fields = []
+        model = User
+        fields = ('username', 'password1', 'password2')
