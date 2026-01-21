@@ -7,4 +7,5 @@ urlpatterns = [
     path('logout/', logout_user, name = 'logout'),
     path('register/', register, name = 'register'),
     path('index/', index, name = 'index'),
+    path('newwebhook/', newwebhook, name = 'newwebhook')
 ]

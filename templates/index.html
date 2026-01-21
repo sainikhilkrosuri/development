@@ -7,7 +7,7 @@
     {% if user.is_authenticated %}
         <h5>Hello, {{ user.username }}</h5>
         <a href="{% url 'logout' %}">Logout</a>
-        <a href="{% url 'newwebhook' %}">Create New Webhook</a>
+    
     {% else %}
         <a href="{% url 'login' %}">Login</a>
         <a href="{% url 'register' %}">Register</a>
